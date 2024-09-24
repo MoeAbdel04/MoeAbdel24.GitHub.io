@@ -17,7 +17,6 @@
             color: white;
             padding: 20px;
             text-align: center;
-            background-image: url('your-header-image.jpg');
             background-size: cover;
         }
 
@@ -74,19 +73,68 @@
         .button:hover {
             background-color: #B83330;
         }
+
+        .contact-input {
+            margin-bottom: 10px;
+            padding: 5px;
+        }
     </style>
     <script>
-        function updateContact() {
-            alert('Update Contact feature coming soon!');
+        let contacts = [
+            { name: "John Doe", email: "johndoe@example.com" },
+            { name: "Jane Smith", email: "janesmith@example.com" }
+        ];
+
+        function displayContacts() {
+            const contactList = document.getElementById("contact-list");
+            contactList.innerHTML = ''; // Clear the list before displaying
+
+            contacts.forEach((contact, index) => {
+                contactList.innerHTML += `
+                    <li>
+                        ${contact.name} - ${contact.email} 
+                        <button class="button" onclick="editContact(${index})">Update</button>
+                        <button class="button" onclick="removeContact(${index})">Remove</button>
+                    </li>
+                `;
+            });
         }
 
         function addContact() {
-            alert('Add Contact feature coming soon!');
+            const name = prompt("Enter the contact's name:");
+            const email = prompt("Enter the contact's email:");
+
+            if (name && email) {
+                contacts.push({ name, email });
+                displayContacts();
+            } else {
+                alert("Both name and email are required to add a contact.");
+            }
         }
 
-        function removeContact() {
-            alert('Remove Contact feature coming soon!');
+        function editContact(index) {
+            const newName = prompt("Update the contact's name:", contacts[index].name);
+            const newEmail = prompt("Update the contact's email:", contacts[index].email);
+
+            if (newName && newEmail) {
+                contacts[index].name = newName;
+                contacts[index].email = newEmail;
+                displayContacts();
+            } else {
+                alert("Both name and email are required to update a contact.");
+            }
         }
+
+        function removeContact(index) {
+            if (confirm(`Are you sure you want to remove ${contacts[index].name}?`)) {
+                contacts.splice(index, 1);
+                displayContacts();
+            }
+        }
+
+        window.onload = function() {
+            displayContacts();
+        };
     </script>
 </head>
 <body>
@@ -105,10 +153,11 @@
 
 <div class="content">
     <h2>Your Contacts</h2>
-    <p>Here is the list of your contacts. You can update, add, or remove contacts as needed.</p>
-    <ul>
-        <li>Contact 1: John Doe - johndoe@example.com <button class="button" onclick="updateContact()">Update</button> <button class="button" onclick="removeContact()">Remove</button></li>
-        <li>Contact 2: Jane Smith - janesmith@example.com <button class="button" onclick="updateContact()">Update</button> <button class="button" onclick="removeContact()">Remove</button></li>
+    <p>
+        Here is the list of your contacts. You can update, add, or remove contacts as needed.
+    </p>
+    <ul id="contact-list">
+        <!-- Contact list dynamically populated here -->
     </ul>
     <button class="button" onclick="addContact()">Add New Contact</button>
 </div>
