@@ -17,7 +17,6 @@
             color: white;
             padding: 20px;
             text-align: center;
-            background-size: cover;
         }
 
         nav {
@@ -80,10 +79,15 @@
         }
     </style>
     <script>
-        let contacts = [
+        // Initialize contacts from localStorage or use default
+        let contacts = JSON.parse(localStorage.getItem('contacts')) || [
             { name: "John Doe", email: "johndoe@example.com" },
             { name: "Jane Smith", email: "janesmith@example.com" }
         ];
+
+        function saveContacts() {
+            localStorage.setItem('contacts', JSON.stringify(contacts));
+        }
 
         function displayContacts() {
             const contactList = document.getElementById("contact-list");
@@ -106,6 +110,7 @@
 
             if (name && email) {
                 contacts.push({ name, email });
+                saveContacts(); // Save the updated contacts to localStorage
                 displayContacts();
             } else {
                 alert("Both name and email are required to add a contact.");
@@ -119,6 +124,7 @@
             if (newName && newEmail) {
                 contacts[index].name = newName;
                 contacts[index].email = newEmail;
+                saveContacts(); // Save the updated contacts to localStorage
                 displayContacts();
             } else {
                 alert("Both name and email are required to update a contact.");
@@ -128,6 +134,7 @@
         function removeContact(index) {
             if (confirm(`Are you sure you want to remove ${contacts[index].name}?`)) {
                 contacts.splice(index, 1);
+                saveContacts(); // Save the updated contacts to localStorage
                 displayContacts();
             }
         }
