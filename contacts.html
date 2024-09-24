@@ -60,7 +60,34 @@
             background-color: #B83330;
             color: white;
         }
+
+        .button {
+            padding: 5px 10px;
+            margin: 5px;
+            background-color: #D94A38;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #B83330;
+        }
     </style>
+    <script>
+        function updateContact() {
+            alert('Update Contact feature coming soon!');
+        }
+
+        function addContact() {
+            alert('Add Contact feature coming soon!');
+        }
+
+        function removeContact() {
+            alert('Remove Contact feature coming soon!');
+        }
+    </script>
 </head>
 <body>
 
@@ -78,15 +105,12 @@
 
 <div class="content">
     <h2>Your Contacts</h2>
-    <p>
-        Here is the list of your contacts. You can update, add, or remove contacts as needed.
-    </p>
-    <!-- Placeholders for dynamic contact management -->
+    <p>Here is the list of your contacts. You can update, add, or remove contacts as needed.</p>
     <ul>
-        <li>Contact 1: John Doe - johndoe@example.com</li>
-        <li>Contact 2: Jane Smith - janesmith@example.com</li>
-        <!-- More contacts would be dynamically loaded here -->
+        <li>Contact 1: John Doe - johndoe@example.com <button class="button" onclick="updateContact()">Update</button> <button class="button" onclick="removeContact()">Remove</button></li>
+        <li>Contact 2: Jane Smith - janesmith@example.com <button class="button" onclick="updateContact()">Update</button> <button class="button" onclick="removeContact()">Remove</button></li>
     </ul>
+    <button class="button" onclick="addContact()">Add New Contact</button>
 </div>
 
 <footer>
