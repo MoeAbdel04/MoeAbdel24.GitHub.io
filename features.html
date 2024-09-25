@@ -5,25 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Contact Manager Samurai - Features</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f0f0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
             color: #333;
+        }
+
+        h1, h2 {
+            font-family: 'Sawarabi Mincho', serif;
         }
 
         header {
             background-color: #B83330;
             color: white;
-            padding: 20px;
+            padding: 40px 20px;
             text-align: center;
-            background-image: url('your-header-image.jpg');
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c');
             background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        header h1 {
+            z-index: 1;
+            position: relative;
+            font-size: 3em;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        header p {
+            z-index: 1;
+            position: relative;
+            font-size: 1.3em;
         }
 
         nav {
-            margin: 20px;
-            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         nav a {
@@ -31,68 +65,64 @@
             text-decoration: none;
             font-weight: bold;
             color: #B83330;
-            padding: 10px;
-            border-radius: 5px;
+            padding: 15px;
+            display: inline-block;
+            transition: color 0.3s ease, background-color 0.3s ease;
         }
 
         nav a:hover {
-            background-color: #B83330;
             color: white;
+            background-color: #B83330;
+            border-radius: 5px;
         }
 
         .content {
-            margin: 20px;
+            max-width: 1200px;
+            margin: 30px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
-        h2 {
+        .content h2 {
             color: #B83330;
-            font-size: 2em;
-            font-family: 'Sawarabi Mincho', serif;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        .content p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .features-list {
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .features-list li {
+            font-size: 1.2em;
+            margin-bottom: 10px;
         }
 
         footer {
             text-align: center;
-            padding: 10px;
+            padding: 20px;
             background-color: #B83330;
             color: white;
+            margin-top: 50px;
         }
-    </style>
-</head>
-<body>
 
-<header>
-    <h1>Contact Manager Samurai</h1>
-    <p>Explore Our Features</p>
-</header>
+        footer p {
+            font-size: 1.2em;
+        }
 
-<nav>
-    <a href="index.html">Home</a>
-    <a href="contacts.html">Contacts</a>
-    <a href="features.html">Features</a>
-    <a href="about.html">About Us</a>
-</nav>
-
-<div class="content">
-    <h2>Features of Contact Manager Samurai</h2>
-    <p>
-        Our program includes various features such as:
-        <ul>
-            <li>Adding new contacts</li>
-            <li>Updating phone numbers</li>
-            <li>Sorting contacts for easy access</li>
-            <li>Removing contacts with precision</li>
-            <li>Merging lists seamlessly</li>
-        </ul>
-    </p>
-</div>
-
-<footer>
-    <p>Enhance Your Contact Management</p>
-</footer>
-
-</body>
-</html>
+        .image-section {
+            text-align: center;
+            margin: 30px 0
+        }
