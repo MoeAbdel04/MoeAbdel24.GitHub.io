@@ -4,26 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Contact Manager Samurai</title>
+    <title>Contact Manager Samurai - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f0f0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
             color: #333;
-            margin: 0;
-            padding: 0;
+        }
+
+        h1, h2 {
+            font-family: 'Sawarabi Mincho', serif;
         }
 
         header {
             background-color: #B83330;
             color: white;
-            padding: 20px;
+            padding: 40px 20px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        header h1 {
+            z-index: 1;
+            position: relative;
+            font-size: 3em;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        header p {
+            z-index: 1;
+            position: relative;
+            font-size: 1.3em;
         }
 
         nav {
-            margin: 20px;
-            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         nav a {
@@ -31,52 +65,67 @@
             text-decoration: none;
             font-weight: bold;
             color: #B83330;
-            padding: 10px;
-            border-radius: 5px;
+            padding: 15px;
+            display: inline-block;
+            transition: color 0.3s ease, background-color 0.3s ease;
         }
 
         nav a:hover {
-            background-color: #B83330;
             color: white;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 3em;
-            font-family: 'Sawarabi Mincho', serif;
-        }
-
-        h2 {
-            color: #B83330;
-            font-size: 2em;
-            font-family: 'Sawarabi Mincho', serif;
+            background-color: #B83330;
+            border-radius: 5px;
         }
 
         .content {
-            margin: 20px;
+            max-width: 1200px;
+            margin: 30px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
-        .image-section {
-            text-align: center;
-            margin: 30px 0;
+        .content h2 {
+            color: #B83330;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        .content p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            background-color: #28a745;
+            color: white;
+            font-size: 1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #218838;
         }
 
         footer {
             text-align: center;
-            padding: 10px;
+            padding: 20px;
             background-color: #B83330;
             color: white;
+            margin-top: 50px;
         }
 
-        footer img {
-            width: 300px; /* Adjust the size of the image */
-            margin: 20px 0;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Optional: adds a nice shadow */
+        footer p {
+            font-size: 1.2em;
         }
     </style>
 </head>
@@ -84,7 +133,7 @@
 
 <header>
     <h1>Contact Manager Samurai</h1>
-    <p>Organize your contacts with precision and honor</p>
+    <p>Manage Your Contacts with Precision and Honor</p>
 </header>
 
 <nav>
@@ -95,18 +144,18 @@
 </nav>
 
 <div class="content">
-    <h2>Welcome to the Contact Manager Samurai</h2>
+    <h2>Welcome to Contact Manager Samurai</h2>
     <p>
-        Manage your contacts with the power of a true Samurai! Use this tool to update, organize, and maintain your
-        contact list with ease.
+        Contact Manager Samurai is a tool designed to help you manage your contacts efficiently, with all the discipline of a true Samurai.
     </p>
+    <p>
+        Use our system to organize, update, and maintain your contacts with ease.
+    </p>
+    <a href="contacts.html" class="btn">Get Started</a>
 </div>
 
 <footer>
     <p>Master the Art of Contact Management</p>
-    <div class="image-section">
-        <img src="images/Samurai.jpg" alt="Samurai Image">
-    </div>
 </footer>
 
 </body>
