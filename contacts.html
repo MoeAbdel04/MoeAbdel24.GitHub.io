@@ -7,13 +7,6 @@
     <title>Contact Manager Samurai - Contacts</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
     <style>
-        /* General Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #f8f9fa;
@@ -35,7 +28,7 @@
 
         header::before {
             content: '';
-            background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c'); /* Replace with Samurai-related image */
+            background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c');
             background-size: cover;
             background-position: center;
             opacity: 0.3;
@@ -62,7 +55,6 @@
             font-size: 1.3em;
         }
 
-        /* Navigation */
         nav {
             background-color: #fff;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -84,7 +76,6 @@
             border-radius: 5px;
         }
 
-        /* Main Content */
         .content {
             max-width: 1200px;
             margin: 30px auto;
@@ -107,7 +98,6 @@
             margin-bottom: 20px;
         }
 
-        /* Contact List */
         ul {
             list-style: none;
             padding: 0;
@@ -151,7 +141,6 @@
             background-color: #B83330;
         }
 
-        /* Add New Contact Button */
         .add-button {
             display: inline-block;
             padding: 12px 20px;
@@ -171,7 +160,6 @@
             background-color: #218838;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 20px;
@@ -220,27 +208,85 @@
         Here is the list of your contacts. You can update, add, or remove contacts as needed.
     </p>
     <ul id="contact-list">
-        <li>
-            <span>John Doe - johndoe@example.com</span>
-            <div>
-                <button class="button">Update</button>
-                <button class="button">Remove</button>
-            </div>
-        </li>
-        <li>
-            <span>Jane Smith - janesmith@example.com</span>
-            <div>
-                <button class="button">Update</button>
-                <button class="button">Remove</button>
-            </div>
-        </li>
+        <!-- Contact list dynamically populated here -->
     </ul>
-    <button class="add-button">Add New Contact</button>
+    <button class="add-button" onclick="addContact()">Add New Contact</button>
 </div>
 
 <footer>
     <p>Master the Art of Contact Management</p>
 </footer>
+
+<script>
+    let contacts = JSON.parse(localStorage.getItem('contacts')) || [
+        { name: "John Doe", email: "johndoe@example.com" },
+        { name: "Jane Smith", email: "janesmith@example.com" }
+    ];
+
+    // Function to save contacts to localStorage
+    function saveContacts() {
+        localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
+
+    // Function to display contacts
+    function displayContacts() {
+        const contactList = document.getElementById("contact-list");
+        contactList.innerHTML = '';
+        contacts.forEach((contact, index) => {
+            contactList.innerHTML += `
+                <li>
+                    <span>${contact.name} - ${contact.email}</span>
+                    <div>
+                        <button class="button" onclick="editContact(${index})">Update</button>
+                        <button class="button" onclick="removeContact(${index})">Remove</button>
+                    </div>
+                </li>
+            `;
+        });
+    }
+
+    // Add a new contact
+    function addContact() {
+        const name = prompt("Enter the contact's name:");
+        const email = prompt("Enter the contact's email:");
+
+        if (name && email) {
+            contacts.push({ name, email });
+            saveContacts();
+            displayContacts();
+        } else {
+            alert("Both name and email are required to add a contact.");
+        }
+    }
+
+    // Edit an existing contact
+    function editContact(index) {
+        const newName = prompt("Update the contact's name:", contacts[index].name);
+        const newEmail = prompt("Update the contact's email:", contacts[index].email);
+
+        if (newName && newEmail) {
+            contacts[index].name = newName;
+            contacts[index].email = newEmail;
+            saveContacts();
+            displayContacts();
+        } else {
+            alert("Both name and email are required to update a contact.");
+        }
+    }
+
+    // Remove a contact
+    function removeContact(index) {
+        if (confirm(`Are you sure you want to remove ${contacts[index].name}?`)) {
+            contacts.splice(index, 1);
+            saveContacts();
+            displayContacts();
+        }
+    }
+
+    window.onload = function() {
+        displayContacts();
+    };
+</script>
 
 </body>
 </html>
