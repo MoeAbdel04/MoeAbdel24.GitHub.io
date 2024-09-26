@@ -26,35 +26,6 @@
             overflow: hidden;
         }
 
-        header::before {
-            content: '';
-            background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.3;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 0;
-        }
-
-        header h1 {
-            z-index: 1;
-            position: relative;
-            font-size: 3em;
-            margin-bottom: 10px;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        header p {
-            z-index: 1;
-            position: relative;
-            font-size: 1.3em;
-        }
-
         nav {
             background-color: #fff;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -110,20 +81,22 @@
             border-radius: 10px;
             margin: 10px 0;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
         }
 
-        ul li:hover {
-            transform: translateY(-5px);
+        ul li img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 15px;
         }
 
-        ul li span {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #B83330;
+        ul li .contact-details {
+            display: flex;
+            align-items: center;
         }
 
         .button {
@@ -171,21 +144,6 @@
         footer p {
             font-size: 1.2em;
         }
-
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.5em;
-            }
-
-            .content {
-                margin: 20px;
-                padding: 15px;
-            }
-
-            .add-button {
-                width: 100%;
-            }
-        }
     </style>
 </head>
 <body>
@@ -219,23 +177,25 @@
 
 <script>
     let contacts = JSON.parse(localStorage.getItem('contacts')) || [
-        { name: "John Doe", email: "johndoe@example.com" },
-        { name: "Jane Smith", email: "janesmith@example.com" }
+        { name: "John Doe", email: "johndoe@example.com", photo: "" },
+        { name: "Jane Smith", email: "janesmith@example.com", photo: "" }
     ];
 
-    // Function to save contacts to localStorage
     function saveContacts() {
         localStorage.setItem('contacts', JSON.stringify(contacts));
     }
 
-    // Function to display contacts
     function displayContacts() {
         const contactList = document.getElementById("contact-list");
         contactList.innerHTML = '';
         contacts.forEach((contact, index) => {
+            const contactPhoto = contact.photo ? `<img src="${contact.photo}" alt="${contact.name}">` : '';
             contactList.innerHTML += `
                 <li>
-                    <span>${contact.name} - ${contact.email}</span>
+                    <div class="contact-details">
+                        ${contactPhoto}
+                        <span>${contact.name} - ${contact.email}</span>
+                    </div>
                     <div>
                         <button class="button" onclick="editContact(${index})">Update</button>
                         <button class="button" onclick="removeContact(${index})">Remove</button>
@@ -245,13 +205,13 @@
         });
     }
 
-    // Add a new contact
     function addContact() {
         const name = prompt("Enter the contact's name:");
         const email = prompt("Enter the contact's email:");
+        const photo = prompt("Paste the image URL for the contact's photo (optional):");
 
         if (name && email) {
-            contacts.push({ name, email });
+            contacts.push({ name, email, photo });
             saveContacts();
             displayContacts();
         } else {
@@ -259,14 +219,15 @@
         }
     }
 
-    // Edit an existing contact
     function editContact(index) {
         const newName = prompt("Update the contact's name:", contacts[index].name);
         const newEmail = prompt("Update the contact's email:", contacts[index].email);
+        const newPhoto = prompt("Update the contact's photo URL (optional):", contacts[index].photo);
 
         if (newName && newEmail) {
             contacts[index].name = newName;
             contacts[index].email = newEmail;
+            contacts[index].photo = newPhoto;
             saveContacts();
             displayContacts();
         } else {
@@ -274,7 +235,6 @@
         }
     }
 
-    // Remove a contact
     function removeContact(index) {
         if (confirm(`Are you sure you want to remove ${contacts[index].name}?`)) {
             contacts.splice(index, 1);
