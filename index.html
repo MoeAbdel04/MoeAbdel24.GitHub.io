@@ -7,69 +7,42 @@
     <title>Contact Manager Samurai - Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
+        :root {
+            --background-color: #f8f9fa;
+            --text-color: #333;
+            --header-color: #B83330;
+            --footer-color: #B83330;
+            --card-background: #fff;
+            --button-background: #28a745;
+            --button-text-color: white;
         }
 
-        h1, h2 {
-            font-family: 'Sawarabi Mincho', serif;
+        [data-theme="dark"] {
+            --background-color: #121212;
+            --text-color: #f8f9fa;
+            --header-color: #1a1a1a;
+            --footer-color: #1a1a1a;
+            --card-background: #333;
+            --button-background: #444;
+            --button-text-color: white;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
         }
 
         header {
-            background-color: #B83330;
-            color: white;
+            background-color: var(--header-color);
+            color: var(--text-color);
             padding: 40px 20px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-            animation: fadeInHeader 1.5s ease-in-out;
-        }
-
-        header::before {
-            content: '';
-            background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.3;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 0;
-        }
-
-        header h1 {
-            z-index: 1;
-            position: relative;
-            font-size: 3em;
-            margin-bottom: 10px;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            animation: fadeInText 2s ease-in-out;
-        }
-
-        header p {
-            z-index: 1;
-            position: relative;
-            font-size: 1.3em;
-            animation: fadeInText 2s ease-in-out;
-        }
-
-        @keyframes fadeInHeader {
-            0% { opacity: 0; transform: translateY(-50px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInText {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
         }
 
         nav {
-            background-color: #fff;
+            background-color: var(--card-background);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
@@ -77,15 +50,15 @@
             margin: 0 15px;
             text-decoration: none;
             font-weight: bold;
-            color: #B83330;
+            color: var(--header-color);
             padding: 15px;
             display: inline-block;
             transition: color 0.3s ease, background-color 0.3s ease;
         }
 
         nav a:hover {
-            color: white;
-            background-color: #B83330;
+            color: var(--button-text-color);
+            background-color: var(--header-color);
             border-radius: 5px;
         }
 
@@ -93,38 +66,16 @@
             max-width: 1200px;
             margin: 30px auto;
             padding: 20px;
-            background-color: #fff;
+            background-color: var(--card-background);
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            animation: slideInContent 1.5s ease forwards;
-        }
-
-        @keyframes slideInContent {
-            0% { opacity: 0; transform: translateY(50px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        .content h2 {
-            color: #B83330;
-            margin-bottom: 20px;
-            font-size: 2.5em;
-            animation: fadeInText 2s ease-in-out;
-        }
-
-        .content p {
-            font-size: 1.2em;
-            color: #555;
-            margin-bottom: 20px;
-            animation: fadeInText 2s ease-in-out;
         }
 
         .btn {
             padding: 12px 20px;
-            background-color: #28a745;
-            color: white;
+            background-color: var(--button-background);
+            color: var(--button-text-color);
             font-size: 1em;
             font-weight: bold;
             text-transform: uppercase;
@@ -133,49 +84,30 @@
             cursor: pointer;
             margin-top: 20px;
             transition: background-color 0.3s ease;
-            animation: fadeInText 2.5s ease-in-out;
         }
 
         .btn:hover {
-            background-color: #218838;
+            background-color: var(--header-color);
         }
 
         footer {
             text-align: center;
             padding: 20px;
-            background-color: #B83330;
-            color: white;
+            background-color: var(--footer-color);
+            color: var(--button-text-color);
             margin-top: 50px;
-            opacity: 0;
-            animation: fadeInFooter 2s ease-in-out forwards 2s;
         }
 
-        @keyframes fadeInFooter {
-            0% { opacity: 0; transform: translateY(50px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        footer p {
-            font-size: 1.2em;
-        }
-
-        .image-section {
-            text-align: center;
-            margin: 30px 0;
-            opacity: 0;
-            transform: translateY(50px);
-            animation: slideInImage 1.8s ease forwards 1s;
-        }
-
-        .image-section img {
-            width: 300px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
-
-        @keyframes slideInImage {
-            0% { opacity: 0; transform: translateY(50px); }
-            100% { opacity: 1; transform: translateY(0); }
+        .toggle-theme {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            background-color: var(--button-background);
+            color: var(--button-text-color);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -204,13 +136,33 @@
     <a href="contacts.html" class="btn">Get Started</a>
 </div>
 
-<div class="image-section">
-    <img src="images/Samurai.jpg" alt="Samurai Image">
-</div>
-
 <footer>
     <p>Master the Art of Contact Management</p>
 </footer>
+
+<!-- Theme Toggle Button -->
+<button class="toggle-theme" onclick="toggleTheme()">Toggle Dark Mode</button>
+
+<script>
+    // Check if dark mode is saved in localStorage
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme) {
+        document.body.setAttribute('data-theme', savedTheme);
+    }
+
+    function toggleTheme() {
+        const currentTheme = document.body.getAttribute('data-theme');
+
+        if (currentTheme === 'dark') {
+            document.body.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+        } else {
+            document.body.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        }
+    }
+</script>
 
 </body>
 </html>
