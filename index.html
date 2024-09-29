@@ -91,7 +91,7 @@
             border-radius: 5px;
         }
 
-        /* Floating animation for main content */
+        /* Smooth fade-in animation for main content */
         .content {
             max-width: 1200px;
             margin: 30px auto;
@@ -112,20 +112,6 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
-            }
-        }
-
-        /* Float effect */
-        .content:hover {
-            animation: floating 3s ease-in-out infinite;
-        }
-
-        @keyframes floating {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
             }
         }
 
